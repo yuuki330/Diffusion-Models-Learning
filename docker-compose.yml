@@ -1,0 +1,18 @@
+services:
+  Diffusion-Learning:
+    container_name: yuuki330_Diffusion-Learning
+    tty: true
+    image: python:3.8.6-slim
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./workspace:/workspace
+      - /home/yuuki330/.ssh:/.ssh
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - device_ids: ['5']
+              capabilities: ['gpu']
